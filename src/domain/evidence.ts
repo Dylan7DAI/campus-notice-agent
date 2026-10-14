@@ -1,0 +1,1 @@
+export function validateEvidence(text:string,start:number,end:number,quote:string){ if(!Number.isInteger(start)||!Number.isInteger(end)||start<0||end<start||text.slice(start,end)!==quote) throw new Error('EVIDENCE_INVALID'); return true; }

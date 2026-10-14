@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "text_revision_id": "text_revision_002",
+  "relation": {
+    "kind": "update",
+    "target_case_id": "case_scholarship_001",
+    "evidence_refs": [
+      "evidence_same_case"
+    ]
+  },
+  "facts": [
+    {
+      "id": "fact_due_002",
+      "field": "due",
+      "value": {
+        "kind": "date",
+        "date": "2026-09-28",
+        "timezone": "Asia/Shanghai",
+        "boundary": "inclusive",
+        "raw": "延期至2026年9月28日，当日可提交"
+      },
+      "evidence_refs": [
+        "evidence_new_due"
+      ]
+    },
+    {
+      "id": "fact_requirement_002",
+      "field": "requirement_add",
+      "value": "在读证明",
+      "evidence_refs": [
+        "evidence_new_requirement"
+      ]
+    }
+  ],
+  "questions": []
+}

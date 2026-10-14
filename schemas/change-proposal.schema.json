@@ -1,0 +1,525 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:campus-notice-agent:schema:change-proposal:1.0",
+  "title": "ChangeProposal",
+  "description": "Server-generated deterministic proposal. Clients submit proposal IDs for confirmation; models and clients cannot supply operations as a write command. Empty operations allow clarification or no-op drafts.",
+  "$comment": "Structural validation is necessary but insufficient. The service must verify evidence existence and exact source binding, real calendar validity, IANA timezone/offset validity, object ownership, field permissions, unique IDs and applicable business invariants. Enable format assertion in the selected Draft 2020-12 validator; format may otherwise be annotation-only. Notification text is untrusted data and cannot authorize writes. The server must also check operation applicability, expected case version and proposal status inside a transaction; recompute impact rather than trusting client data. No operation can directly record completion or accept a handoff.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "expected_case_version": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "notice_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "create_task"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "enum": [
+                  "registration",
+                  "submission",
+                  "event_change"
+                ]
+              },
+              "due": {
+                "$ref": "#/$defs/Due"
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "title",
+              "category",
+              "due"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "set_due"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "due": {
+                "$ref": "#/$defs/Due"
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "due"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "add_requirement"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "requirement_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "requirement_id",
+              "label"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "retire_requirement"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "requirement_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "requirement_id"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "set_location"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "location"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "cancel_task"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "restore_task"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "const": "propose_handoff"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              },
+              "to_owner_id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Locally recorded alias; does not prove acceptance or send a message."
+              }
+            },
+            "required": [
+              "op",
+              "task_id",
+              "evidence_refs",
+              "to_owner_id"
+            ]
+          }
+        ]
+      }
+    },
+    "impact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requirement_epoch_changes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Affected task ID."
+          }
+        },
+        "preparations_needing_review": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Affected preparation ID."
+          }
+        },
+        "completion_needing_review": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Affected task ID."
+          }
+        },
+        "calendar_stale_task_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Affected task ID."
+          }
+        }
+      },
+      "required": [
+        "requirement_epoch_changes",
+        "preparations_needing_review",
+        "completion_needing_review",
+        "calendar_stale_task_ids"
+      ]
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Question"
+      }
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "applied",
+        "rejected",
+        "stale"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "case_id",
+    "expected_case_version",
+    "notice_ids",
+    "operations",
+    "impact",
+    "questions",
+    "status",
+    "created_at"
+  ],
+  "oneOf": [
+    {
+      "description": "Draft for a case that does not exist yet.",
+      "properties": {
+        "case_id": {
+          "type": "null"
+        },
+        "expected_case_version": {
+          "type": "null"
+        }
+      }
+    },
+    {
+      "description": "Proposal for an existing versioned case.",
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_case_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Due": {
+      "description": "A proposed due value. Unknown stays unknown; date-only values do not imply 23:59.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unknown"
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "raw"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "date"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "description": "IANA timezone; validate against an authoritative timezone database."
+            },
+            "boundary": {
+              "enum": [
+                "inclusive",
+                "exclusive",
+                "unspecified"
+              ]
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "date",
+            "timezone",
+            "boundary",
+            "raw"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "instant"
+            },
+            "at": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "description": "IANA timezone; server must validate its relationship to the supplied offset."
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "at",
+            "timezone",
+            "raw"
+          ]
+        }
+      ]
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Field or relationship needing clarification."
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "field",
+        "prompt",
+        "blocking"
+      ]
+    }
+  }
+}

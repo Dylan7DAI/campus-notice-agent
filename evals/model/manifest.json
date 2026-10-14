@@ -1,0 +1,516 @@
+{
+  "schema_version": "m4.1",
+  "generated": "synthetic-consented",
+  "cases": [
+    {
+      "id": "C01",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C01-1.png",
+        "evals/model/assets/C01-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 01 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-02",
+        "requirement": "ID CARD",
+        "location": "ROOM A",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C02",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C02-1.png",
+        "evals/model/assets/C02-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 02 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-03",
+        "requirement": "FORM A",
+        "location": "ROOM B",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C03",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C03-1.png",
+        "evals/model/assets/C03-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 03 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-04",
+        "requirement": "PHOTO",
+        "location": "ROOM C",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C04",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C04-1.png",
+        "evals/model/assets/C04-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 04 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-05",
+        "requirement": "ID CARD",
+        "location": "ROOM D",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C05",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C05-1.png",
+        "evals/model/assets/C05-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 05 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-06",
+        "requirement": "FORM A",
+        "location": "ROOM E",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C06",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C06-1.png",
+        "evals/model/assets/C06-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 06 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-07",
+        "requirement": "PHOTO",
+        "location": "ROOM F",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C07",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C07-1.png",
+        "evals/model/assets/C07-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 07 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-08",
+        "requirement": "ID CARD",
+        "location": "ROOM G",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C08",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C08-1.png",
+        "evals/model/assets/C08-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 08 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-09",
+        "requirement": "FORM A",
+        "location": "ROOM H",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C09",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C09-1.png",
+        "evals/model/assets/C09-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 09 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-10",
+        "requirement": "PHOTO",
+        "location": "ROOM A",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C10",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C10-1.png",
+        "evals/model/assets/C10-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 10 REGISTRATION",
+        "category": "registration",
+        "due_date": null,
+        "requirement": "ID CARD",
+        "location": "ROOM B",
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "C11",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C11-1.png",
+        "evals/model/assets/C11-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 11 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-12",
+        "requirement": "FORM A",
+        "location": "ROOM C",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C12",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C12-1.png",
+        "evals/model/assets/C12-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 12 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-13",
+        "requirement": "PHOTO",
+        "location": "ROOM D",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C13",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C13-1.png",
+        "evals/model/assets/C13-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 13 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-14",
+        "requirement": "ID CARD",
+        "location": "ROOM E",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C14",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C14-1.png",
+        "evals/model/assets/C14-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 14 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-15",
+        "requirement": "FORM A",
+        "location": "ROOM F",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C15",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C15-1.png",
+        "evals/model/assets/C15-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 15 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-16",
+        "requirement": "PHOTO",
+        "location": "ROOM G",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C16",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C16-1.png",
+        "evals/model/assets/C16-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 16 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-17",
+        "requirement": "ID CARD",
+        "location": "ROOM H",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C17",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C17-1.png",
+        "evals/model/assets/C17-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 17 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-18",
+        "requirement": "FORM A",
+        "location": "ROOM A",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C18",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C18-1.png",
+        "evals/model/assets/C18-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 18 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-19",
+        "requirement": "PHOTO",
+        "location": "ROOM B",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C19",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C19-1.png",
+        "evals/model/assets/C19-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 19 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-20",
+        "requirement": "ID CARD",
+        "location": "ROOM C",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C20",
+      "split": "development",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C20-1.png",
+        "evals/model/assets/C20-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 20 SUBMISSION",
+        "category": "submission",
+        "due_date": null,
+        "requirement": "FORM A",
+        "location": "ROOM D",
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "C21",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C21-1.png",
+        "evals/model/assets/C21-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 21 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-22",
+        "requirement": "PHOTO",
+        "location": "ROOM E",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C22",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C22-1.png",
+        "evals/model/assets/C22-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 22 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-23",
+        "requirement": "ID CARD",
+        "location": "ROOM F",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C23",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C23-1.png",
+        "evals/model/assets/C23-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 23 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-24",
+        "requirement": "FORM A",
+        "location": "ROOM G",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C24",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C24-1.png",
+        "evals/model/assets/C24-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 24 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-25",
+        "requirement": "PHOTO",
+        "location": "ROOM H",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C25",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C25-1.png",
+        "evals/model/assets/C25-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 25 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-26",
+        "requirement": "ID CARD",
+        "location": "ROOM A",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C26",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C26-1.png",
+        "evals/model/assets/C26-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 26 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-27",
+        "requirement": "FORM A",
+        "location": "ROOM B",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C27",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C27-1.png",
+        "evals/model/assets/C27-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 27 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": "2026-10-01",
+        "requirement": "PHOTO",
+        "location": "ROOM C",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C28",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C28-1.png",
+        "evals/model/assets/C28-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 28 REGISTRATION",
+        "category": "registration",
+        "due_date": "2026-10-02",
+        "requirement": "ID CARD",
+        "location": "ROOM D",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C29",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C29-1.png",
+        "evals/model/assets/C29-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 29 SUBMISSION",
+        "category": "submission",
+        "due_date": "2026-10-03",
+        "requirement": "FORM A",
+        "location": "ROOM E",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "C30",
+      "split": "heldout",
+      "sequence_length": 2,
+      "image_paths": [
+        "evals/model/assets/C30-1.png",
+        "evals/model/assets/C30-2.png"
+      ],
+      "gold": {
+        "title": "ITEM 30 EVENT CHANGE",
+        "category": "event_change",
+        "due_date": null,
+        "requirement": "PHOTO",
+        "location": "ROOM F",
+        "needs_clarification": true
+      }
+    }
+  ]
+}

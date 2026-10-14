@@ -4,7 +4,7 @@
 
 通知簿是一个在自己电脑上运行的 Demo，适合学生、校园活动参与者，以及需要处理报名和材料提交的使用者。你可以粘贴通知或上传截图，核对内容后生成任务；收到后续通知时，在原任务上确认变更，保留之前的通知和完成记录。
 
-本 GitHub 仓库当前发布项目介绍和使用指南，尚未包含可运行源码。下文启动步骤适用于已经取得完整项目源码的使用者。
+本 GitHub 仓库包含 Demo 源码和使用指南。下载后可在自己的电脑上启动；合成样例无需 API Key，真实识别需要配置自己的模型服务密钥。
 
 > 当前状态：合成样例的完整任务流程可体验；真实截图识别和事项提取已接通，仍属试用功能。真实模型质量评估未通过，可能漏项、误读日期或翻译原文，所有结果都需要人工核对。
 
@@ -56,15 +56,16 @@
 
 准备完整项目源码、Node.js 22–24 和 npm 10 或以上版本。当前工程在 Windows、Node.js 24.16.0、npm 11.13.0 上验证；其他系统的完整启动流程尚未验收。
 
-进入解压后的项目文件夹，在终端运行：
+登录有权访问本私有仓库的 GitHub 账户，在仓库页选择 **Code → Download ZIP**，解压后进入项目文件夹（名称可能为 `campus-notice-agent-main`），在该文件夹打开终端并运行：
 
 ```powershell
-cd campus-notice-agent
 npm ci
 npm run demo
 ```
 
-随后打开 [http://127.0.0.1:3000/](http://127.0.0.1:3000/)。已经安装依赖时，只需运行 `npm run demo`。如果 3000 端口被占用，可运行：
+也可以使用 Git 克隆：`git clone https://github.com/Dylan7DAI/campus-notice-agent.git`，再进入 `campus-notice-agent` 文件夹执行上述命令。私有仓库的克隆需要有权访问的 GitHub 账户认证。
+
+启动后打开 [http://127.0.0.1:3000/](http://127.0.0.1:3000/)。已经安装依赖时，只需运行 `npm run demo`。如果 3000 端口被占用，可运行：
 
 ```powershell
 npm run demo -- --port=3001
@@ -187,6 +188,8 @@ npm run demo:real
 
 一个本地 Web 应用与 SQLite 数据库，采用 Next.js App Router、React、TypeScript、Prisma、Zod、Vitest 和 Playwright。
 
+本次源码发布锁定 Next.js 15.5.27、React / ReactDOM 19.1.9；对应官方发布说明见 [Next.js](https://github.com/vercel/next.js/releases/tag/v15.5.27) 和 [React](https://github.com/react/react/releases/tag/v19.1.9)。检查与构建会先生成 Prisma Client，无需依赖本机已有生成缓存。
+
 ```powershell
 npm run check
 npm run test:unit
@@ -205,5 +208,7 @@ npm run build
 需要重跑生产提示评估时使用 `npm run eval:model -- --prompts=application --set=heldout --repeats=3`。比较真实 Demo 时，在该子进程显式设置 `MODEL_THINKING=disabled`、`MODEL_VISION_THINKING=disabled`；评估预算与完整应用流程的差别须随报告保留。该命令会调用配置的模型服务，请先检查配置和费用。
 
 完整项目的规格入口为 `AGENTS.md`，产品、领域、架构和 API 说明在 `docs/`。
+
+历史评估运行报告保存在执行者本机的 `evals/runs/`，不随源码上传；进度文档保留报告路径、成绩和失败记录。本次安装审计仍有 13 项告警（2 critical、9 high、2 moderate），涉及测试工具和传递依赖；本次补丁更新不代表所有依赖风险已消除，进一步的依赖治理需另行验证。
 
 </details>

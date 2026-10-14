@@ -1,0 +1,488 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:campus-notice-agent:schema:notice-candidate:1.0",
+  "title": "NoticeCandidate",
+  "description": "Untrusted model proposal only. It cannot mutate tasks, confirm changes, mark completion, or authenticate a responsible person.",
+  "$comment": "Structural validation is necessary but insufficient. The service must verify evidence existence and exact source binding, real calendar validity, IANA timezone/offset validity, object ownership, field permissions, unique IDs and applicable business invariants. Enable format assertion in the selected Draft 2020-12 validator; format may otherwise be annotation-only. Notification text is untrusted data and cannot authorize writes.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "text_revision_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Immutable source text revision ID."
+    },
+    "relation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "new"
+            },
+            "target_case_id": {
+              "type": "null"
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "target_case_id",
+            "evidence_refs"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "update"
+            },
+            "target_case_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "target_case_id",
+            "evidence_refs"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unknown"
+            },
+            "target_case_id": {
+              "type": "null"
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "target_case_id",
+            "evidence_refs"
+          ]
+        }
+      ]
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "title"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "category"
+              },
+              "value": {
+                "enum": [
+                  "registration",
+                  "submission",
+                  "event_change"
+                ]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "due"
+              },
+              "value": {
+                "$ref": "#/$defs/Due"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "requirement_add"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "requirement_remove"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "location"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "cancellation"
+              },
+              "value": {
+                "type": "boolean"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "const": "owner_hint"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Evidence ID; server must resolve and authorize this reference."
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "evidence_refs"
+            ]
+          }
+        ]
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Question"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "text_revision_id",
+    "relation",
+    "facts",
+    "questions"
+  ],
+  "$defs": {
+    "Due": {
+      "description": "A proposed due value. Unknown stays unknown; date-only values do not imply 23:59.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unknown"
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "raw"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "date"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "description": "IANA timezone; validate against an authoritative timezone database."
+            },
+            "boundary": {
+              "enum": [
+                "inclusive",
+                "exclusive",
+                "unspecified"
+              ]
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "date",
+            "timezone",
+            "boundary",
+            "raw"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "instant"
+            },
+            "at": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "description": "IANA timezone; server must validate its relationship to the supplied offset."
+            },
+            "raw": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "at",
+            "timezone",
+            "raw"
+          ]
+        }
+      ]
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Field or relationship needing clarification."
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "field",
+        "prompt",
+        "blocking"
+      ]
+    }
+  }
+}

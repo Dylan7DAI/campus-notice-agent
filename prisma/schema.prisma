@@ -1,0 +1,248 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Case {
+  id        String   @id
+  title     String
+  category  String
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+}
+
+model SourceArtifact {
+  id                String   @id
+  sha256            String   @unique
+  mediaType         String
+  privateStorageKey String
+  receivedAt        DateTime @default(now())
+  originLabel       String
+  size              Int
+}
+
+model TextRevision {
+  id        String   @id
+  sourceId  String
+  parentId  String?
+  text      String
+  method    String
+  createdAt DateTime @default(now())
+}
+
+model NoticeRevision {
+  id             String    @id
+  caseId         String?
+  textRevisionId String
+  issuedAt       DateTime?
+  issuer         String?
+  supersedesJson String     @default("[]")
+  evidenceIdsJson String    @default("[]")
+  createdAt      DateTime  @default(now())
+}
+
+model Evidence {
+  id             String @id
+  sourceId       String
+  textRevisionId String
+  quote          String
+  start          Int
+  end            Int
+  origin         String
+}
+
+model Task {
+  id                String  @id
+  caseId            String
+  title             String
+  executionStatus   String  @default("open")
+  consistencyStatus String  @default("clear")
+  requirementEpoch  Int     @default(1)
+  dueJson           String?
+  location          String?
+  effectiveOwnerId  String?
+  calendarSequence  Int     @default(1)
+}
+
+model Requirement {
+  id           String  @id
+  taskId       String
+  label        String
+  active       Boolean @default(true)
+  satisfaction String  @default("missing")
+}
+
+model Preparation {
+  id                String @id
+  taskId            String
+  title             String
+  status            String @default("planned")
+  planState         String @default("valid")
+  dependencyIdsJson String @default("[]")
+  requirementIdsJson String @default("[]")
+  start             String?
+  end               String?
+  durationMinutes   Int?
+}
+
+model CompletionRecord {
+  id           String   @id
+  taskId       String
+  coveredEpoch Int
+  statement    String
+  coveredRequirementIdsJson String @default("[]")
+  kind         String @default("user_attested")
+  evidenceIdsJson String @default("[]")
+  recordedBy   String @default("local_user")
+  createdAt    DateTime @default(now())
+}
+
+model Handoff {
+  id          String   @id
+  taskId      String
+  fromOwnerId String?
+  toOwnerId   String
+  status      String   @default("awaiting_confirmation")
+  recordedBy  String   @default("local_user")
+  basisEvidenceId String?
+  createdAt   DateTime @default(now())
+}
+
+model ReminderLog {
+  id          String   @id
+  taskId      String
+  displayedAt DateTime
+  status      String   @default("displayed")
+}
+
+model ChangeProposal {
+  id                  String @id
+  caseId              String
+  expectedCaseVersion Int
+  status              String @default("pending")
+  payloadHash         String
+}
+
+model ProposalApplication {
+  id                 String @id
+  proposalId         String @unique
+  commandId          String
+  appliedCaseVersion Int
+}
+
+model CommandResult {
+  id             String   @id
+  scope          String
+  idempotencyKey String
+  payloadHash    String
+  responseJson   String
+  committedAt    DateTime @default(now())
+
+  @@unique([scope, idempotencyKey])
+}
+
+model AuditEvent {
+  id          String   @id
+  caseId      String
+  caseVersion Int
+  commandId   String
+  eventType   String
+  beforeJson  String
+  afterJson   String
+  createdAt   DateTime @default(now())
+}
+
+model Intake {
+  id               String   @id
+  text             String
+  stage            String   @default("received")
+  approved         Boolean  @default(false)
+  candidateJson    String?
+  sourceArtifactId String?
+  textRevisionId   String?
+  createdAt        DateTime @default(now())
+}
+
+model TextApproval {
+  id             String   @id
+  intakeId       String
+  textRevisionId String
+  approvedAt     DateTime @default(now())
+}
+
+model CalendarExport {
+  id          String   @id
+  taskId      String
+  uid         String
+  sequence    Int
+  caseVersion Int
+  generatedAt DateTime @default(now())
+  sha256      String
+  stale       Boolean  @default(false)
+}
+
+model AgentRun {
+  id             String    @id
+  intakeId       String?
+  stage          String
+  status         String    @default("pending")
+  provider       String
+  model          String?
+  promptVersion  String
+  schemaVersion  String
+  inputSha256    String
+  outputSha256   String?
+  startedAt      DateTime  @default(now())
+  finishedAt     DateTime?
+  retryCount     Int       @default(0)
+  callCount      Int       @default(0)
+  tokenUsageJson String?
+  costJson       String?
+  errorCode      String?
+  safeError      String?
+  proposalId     String?
+  commandId      String?
+  caseVersion   Int?
+  cancelledAt    DateTime?
+}
+
+model NoticeRelation {
+  id                 String   @id
+  caseId             String
+  noticeId           String
+  supersedesNoticeId String?
+  evidenceIdsJson    String   @default("[]")
+  createdAt          DateTime @default(now())
+
+  @@unique([caseId, noticeId])
+}
+
+model ProposalOperation {
+  id              String  @id
+  proposalId      String
+  op              String
+  taskId          String?
+  requirementId   String?
+  valueJson       String?
+  evidenceIdsJson String  @default("[]")
+}
+
+model ProposalQuestion {
+  id         String  @id
+  proposalId String
+  field      String
+  question   String
+  answerJson String?
+  blocking   Boolean @default(true)
+}
+
+model CompensationTarget {
+  id           String @id
+  proposalId   String
+  auditEventId String
+  reason       String
+}

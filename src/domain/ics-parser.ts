@@ -1,0 +1,6 @@
+import {encodeIcs,CalendarDue} from './calendar';
+export type ParsedIcs={uid:string;sequence:number;summary:string;dtstart:string;dtend?:string;status?:string;value_type?:'DATE'|'DATE-TIME'};
+const unescape=(s:string)=>s.replace(/\\n/gi,'\n').replace(/\\([;,\\])/g,'$1');
+export function parseIcs(input:string):ParsedIcs{if(!input.endsWith('\r\n'))throw Error('ICS_CRLF_REQUIRED');const lines=input.replace(/\r\n[ ]/g,'').split('\r\n').filter(Boolean);if(lines[0]!=='BEGIN:VCALENDAR'||lines.at(-1)!=='END:VCALENDAR')throw Error('ICS_CONTAINER_INVALID');const get=(name:string)=>lines.find(x=>x.startsWith(name+':')||x.startsWith(name+';'))?.split(':').slice(1).join(':');const uid=get('UID'),seq=get('SEQUENCE'),summary=get('SUMMARY'),start=get('DTSTART');if(!uid||!seq||!summary||!start)throw Error('ICS_REQUIRED_FIELD');const startLine=lines.find(x=>x.startsWith('DTSTART'));const end=get('DTEND'),status=get('STATUS');return {uid,sequence:Number(seq),summary:unescape(summary),dtstart:start,dtend:end,status,value_type:startLine?.includes('VALUE=DATE')?'DATE':'DATE-TIME'};}
+export function roundTripCalendar(i:{taskId:string;title:string;due:CalendarDue;sequence:number;cancelled?:boolean}){return parseIcs(encodeIcs(i));}
+

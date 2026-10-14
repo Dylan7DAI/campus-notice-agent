@@ -1,0 +1,46 @@
+{
+  "name": "campus-notice-agent",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22 <25",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "demo": "node scripts/demo.mjs",
+    "demo:real": "node scripts/demo.mjs --real",
+    "dev": "next dev --hostname 127.0.0.1 --port 3000",
+    "check": "prisma generate && tsc --noEmit && eslint . && node scripts/check-spec.mjs",
+    "build": "prisma generate && next build",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push --skip-generate",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "node scripts/test-integration.mjs",
+    "test:e2e": "node scripts/test-e2e.mjs",
+    "test:e2e:real": "node scripts/test-e2e-real.mjs",
+    "test:eval": "vitest run tests/eval --maxWorkers=1 --minWorkers=1",
+    "eval:offline": "node scripts/eval-offline.mjs",
+    "eval:m7": "node scripts/report-m7.mjs",
+    "eval:model": "node scripts/eval-model.mjs",
+    "generate:model-corpus": "node scripts/generate-model-corpus.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.2",
+    "next": "15.5.27",
+    "react": "19.1.9",
+    "react-dom": "19.1.9",
+    "zod": "4.1.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.36.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "22.15.0",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "eslint": "9.36.0",
+    "prisma": "^6.16.2",
+    "typescript": "5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

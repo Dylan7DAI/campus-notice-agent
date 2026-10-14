@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "proposal_002",
+  "case_id": "case_scholarship_001",
+  "expected_case_version": 3,
+  "notice_ids": [
+    "notice_revision_002"
+  ],
+  "operations": [
+    {
+      "op": "set_due",
+      "task_id": "task_submission_001",
+      "evidence_refs": [
+        "evidence_new_due"
+      ],
+      "due": {
+        "kind": "date",
+        "date": "2026-09-28",
+        "timezone": "Asia/Shanghai",
+        "boundary": "inclusive",
+        "raw": "延期至2026年9月28日，当日可提交"
+      }
+    },
+    {
+      "op": "add_requirement",
+      "task_id": "task_submission_001",
+      "evidence_refs": [
+        "evidence_new_requirement"
+      ],
+      "requirement_id": "requirement_enrollment_001",
+      "label": "在读证明"
+    }
+  ],
+  "impact": {
+    "requirement_epoch_changes": [
+      "task_submission_001"
+    ],
+    "preparations_needing_review": [],
+    "completion_needing_review": [
+      "task_submission_001"
+    ],
+    "calendar_stale_task_ids": [
+      "task_submission_001"
+    ]
+  },
+  "questions": [],
+  "status": "pending",
+  "created_at": "2026-09-24T12:00:00+08:00"
+}

@@ -1,0 +1,2 @@
+export type PreparationPlan={start?:string;end?:string;durationMinutes?:number;dependencyIds:string[];planState:'valid'|'needs_review'};
+export function assessPreparationImpact(plan:PreparationPlan,due?:string){if(!due)return {...plan,planState:'needs_review' as const};const end=plan.end?Date.parse(plan.end):NaN;const deadline=Date.parse(due);if(!Number.isFinite(end)||!Number.isFinite(deadline)||end>deadline)return {...plan,planState:'needs_review' as const};return {...plan,planState:'valid' as const};}
