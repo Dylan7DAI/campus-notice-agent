@@ -925,7 +925,7 @@ M3 已完成。此前 E18、E19、E21 的 `not_run` 已消除；本轮没有未�
 - 用户分配：介绍 Demo 解决的痛点、背景/场景和普通用户操作，整合为 README 并上传 GitHub；用户选择新建私有仓库 `campus-notice-agent`。范围见 [D3 任务卡](07-work-plan.md)，本轮仅修改 README、任务卡和进度，不改应用、模型、数据库或冻结评估资产。
 - README 围绕报名已完成后收到补交材料通知的场景，解释通知来源、材料准备、用户完成声明、原任务更新与需复核；补齐固定样例、自己的文本/截图、启动条件、服务端 Key、主动外传、失败草稿、交接和 ICS 的实际语义。明确真实识别质量未通过及澄清/候选字段编辑缺失，没有写成已稳定可用。
 - 只读交叉审查按实际页面与代码核对按钮和先后顺序；修正更新通知必须确认文本、新增材料先标备齐再记录补充完成，以及新仓库仅含指南、启动需完整源码的说明。
-- 当前本地仍无 `.git`，没有初始化本地仓库或批量推送。通过已认证的 GitHub 账户创建 [私有仓库](https://github.com/Dylan7DAI/campus-notice-agent)，仅上传 [README](https://github.com/Dylan7DAI/campus-notice-agent/blob/main/README.md)。未上传源码、密钥、用户数据库、原图或个人通知。
+- D3发布时本地无 `.git`，没有初始化本地仓库或批量推送。通过已认证的 GitHub 账户创建 [私有仓库](https://github.com/Dylan7DAI/campus-notice-agent)，仅上传 [README](https://github.com/Dylan7DAI/campus-notice-agent/blob/main/README.md)。本卡未上传源码、密钥、用户数据库、原图或个人通知。
 
 | 本轮命令 / 操作 | 实际结果 | 证据 / 限制 |
 | --- | --- | --- |
@@ -936,7 +936,7 @@ M3 已完成。此前 E18、E19、E21 的 `not_run` 已消除；本轮没有未�
 | `gh api` 仓库与 `git/trees/main` 复核 | 均 exit0 | `private=true`，默认分支 `main`；完整树仅 `README.md`，`truncated=false` |
 
 - D3 状态：**done**。本轮为文档发布，未重跑应用/模型测试；README 的工程与质量结论引用 D2 已记录的实际结果。D2/M4/M5/M6 保持 partial，M7 保持 not_run。
-- 局限与下一步：GitHub 当前仅有介绍与指南，不能从该仓库直接安装运行；后续如需发布完整可运行项目，应另按用户分配检查源码、许可、依赖和排除项后上传。现有本地 Demo 及其数据保留。
+- D3完成时的局限：GitHub 仅有介绍与指南，不能直接安装运行；后续源码发布已由用户另分配D4，见下方验收。现有本地 Demo 及其数据保留。
 
 ## D4：可运行 Demo 的 GitHub 发布（2026-10-14）
 
@@ -966,4 +966,13 @@ M3 已完成。此前 E18、E19、E21 的 `not_run` 已消除；本轮没有未�
 | 安装及 `npm audit` 摘要 | 13项告警仍存在 | 2 critical（测试工具）、9 high、2 moderate（含传递依赖）；不宣称所有依赖安全，不用跨主版本升级或强制audit fix掩盖 |
 
 - 人工查看本轮合成桌面与窄屏截图：更新后报名表ready、在读证明missing、需复核及旧完成声明/历史可见，窄屏无横向溢出。图片仅在验收目录 `test-results/`，未上传。
-- 本地发布验收通过，准备推送源码；远程提交与私有树复核随后记录。D2/M4/M5/M6继续partial，M7 not_run；没有重跑线上质量评估或真实试点。
+- 本地发布验收通过。D2/M4/M5/M6继续partial，M7 not_run；没有重跑线上质量评估或真实试点。
+
+### D4 远程交付与完成状态
+
+- 源码提交 [7ca5b055](https://github.com/Dylan7DAI/campus-notice-agent/commit/7ca5b055c9865fbcf8464b2598bd2ff7dae7567a)，`git push -u origin main` 实际exit0，沿用D3历史；没有force push。完整项目与README已在 [私有仓库](https://github.com/Dylan7DAI/campus-notice-agent)。
+- GitHub仓库元数据确认 `private=true`、默认分支main；递归树 `truncated=false`，186个文件，全部文件的blob SHA与本地发布index一致。所需README/package/lockfile/demo入口/页面/schema/env示例均存在；禁止路径0，未上传Key、用户库、通知原图或运行报告。
+- GitHub [源码提交CI](https://github.com/Dylan7DAI/campus-notice-agent/actions/runs/38501591202) 实际 **success**：Ubuntu + Node22，干净checkout的 `npm ci`、`npm run check`、`npm run build` 全部通过。这是安装/检查/构建证据，不把它当作Linux完整界面或模型质量验收。
+- D4状态 **done**。后续交付记录为纯文档提交；无需重复已通过的应用检查，最终文档再跑规格引用检查。
+- 使用者下一步：在GitHub仓库下载ZIP或认证克隆，进入项目目录后 `npm ci`，再 `npm run demo`。固定合成体验无需Key；自己的通知试用需按README配置服务端Key并运行 `npm run demo:real`。重要日期/材料仍须人工核对，依赖审计未全部消除。
+- 原项目的本机配置、应用/演示数据与3000端口服务保留。独立验收目录保留为复现证据，其临时配置/依赖/数据未进入Git；仅验收用3014/3015服务已停止。
